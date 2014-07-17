@@ -20,11 +20,40 @@
 	 * @return {object}
 	 */
 	App.ImageGrid = function(images, container, rowTargetHeight, borderOffset) {
+		/**
+		 * The container element
+		 * @var {element}
+		 */
 		this.container = null;
+
+		/**
+		 * The max width of a row
+		 * @var {int}
+		 */
 		this.maxWidth = 0;
+
+		/**
+		 * The initial height of a row
+		 * @var {int}
+		 */
 		this.targetHeight = 500;
+
+		/**
+		 * The original images array
+		 * @var {array}
+		 */
 		this.originalImages = null;
+
+		/**
+		 * An array with the images.
+		 * @var {array}
+		 */
 		this.processedImages = null;
+
+		/**
+		 * Border offset per image.
+		 * @var {inte}
+		 */
 		this.borderOffset = 0;
 
 
@@ -44,12 +73,13 @@
 			this.container = container;
 			this.borderOffset = borderOffset;
 
-			this.processedImages = [];
 			this.maxWidth = this.container.clientWidth;
+			
+			this.processedImages = [];
 
 			for(var i = 0; i < this.originalImages.length; i++) {
-				var width = parseInt(this.originalImages[i].width, 10);
-				var height = parseInt(this.originalImages[i].height, 10);
+				var width = parseInt(this.originalImages[i].width);
+				var height = parseInt(this.originalImages[i].height);
 				width = width * (this.targetHeight / height); 
 
 				var image = {
@@ -57,6 +87,7 @@
 					'height': this.targetHeight,
 					'image': this.originalImages[i].image
 				}
+
 				this.processedImages.push(image);
 			}
 			
